@@ -11,6 +11,16 @@ users = [
     ["ユーザー3", 40]
 ]
 
+todos = [
+    ["todo1", 1],
+    ["todo2", 1],
+    ["todo3", 2]
+]
+
 users.each do |name, age|
     User.create(name: name, age: age)
+end
+
+todos.each do |title, user_id|
+    Todo.create(title: title, user_id: user_id)
 end

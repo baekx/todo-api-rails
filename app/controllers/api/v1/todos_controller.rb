@@ -28,10 +28,23 @@ module Api
 				end
 			end
 
-			private
-				def todo_params
-					params.permit(:title, :user_id)
+			def edit
+				todo = Todo.find(params[:id])
+			end
+
+			def update
+				todo = Todo.find(params[:id])
+				if todo.update(todo_params)
+					render status: 200, json: { todo: todo }
+				else
+					render status: 400, json: { data: todo.errors }
 				end
+			end
+
+			private
+			def todo_params
+				params.permit(:title, :user_id, :description)
+			end
 		end
 	end
 end

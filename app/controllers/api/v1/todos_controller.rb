@@ -41,6 +41,16 @@ module Api
 				end
 			end
 
+			def destroy
+				todo = Todo.find(params[:id])
+				if todo.present?
+					todo.destroy
+					render status: 200, json: { message: '削除しました' }
+				else
+					render status: 400, json: { data: todo.errors }
+				end
+			end
+
 			private
 			def todo_params
 				params.permit(:title, :user_id, :description)

@@ -19,6 +19,15 @@ module Api
 				end
 			end
 
+			def show
+				todo = Todo.find(params[:id])
+				if todo.present?
+					render status: 200, json: { todo: todo }
+				else
+					render status: 400, json: { data: todo.errors }
+				end
+			end
+
 			private
 				def todo_params
 					params.permit(:title, :user_id)
